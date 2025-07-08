@@ -1047,6 +1047,7 @@ a.elementor-button, .elementor-button:hover {
 .header_part .header .navbar {
   padding: 0;
   text-transform: capitalize;
+  align-items: center;
 }
 @media (max-width: 991px) {
   .header_part .header .navbar {
@@ -1055,23 +1056,39 @@ a.elementor-button, .elementor-button:hover {
 }
 .header_part .header .navbar .navbar-nav {
   margin-right: 13px;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: nowrap;
 }
 @media (max-width: 991px) {
   .header_part .header .navbar .navbar-nav {
     margin: 0;
   }
 }
+.header_part .header .navbar .nav-item {
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+}
 .header_part .header .navbar .nav-link {
   color: #5f5f7f;
   font-weight: 900;
   font-size: 15px;
-  padding: 33px 31px;
+  padding: 33px 20px;
   text-transform: capitalize;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: all 0.3s ease;
 }
 @media (max-width: 991px) {
   .header_part .header .navbar .nav-link {
     padding: 15px 20px;
     border-bottom: 1px solid rgba(95, 95, 127, 0.2);
+    width: 100%;
+    text-align: left;
   }
   .header_part .header .navbar .nav-link:hover {
     background-color: transparent;
@@ -1080,7 +1097,22 @@ a.elementor-button, .elementor-button:hover {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .header_part .header .navbar .nav-link {
-    padding: 25px 20px;
+    padding: 25px 15px;
+    font-size: 14px;
+  }
+  
+  .header_part .header .navbar .nav-item {
+    margin: 0 3px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .header_part .header .navbar .nav-link {
+    padding: 20px 12px;
+    font-size: 13px;
+  }
+  
+  .header_part .header .navbar .nav-item {
+    margin: 0 2px;
   }
 }
 .header_part .header .cu_btn {
@@ -1088,10 +1120,16 @@ a.elementor-button, .elementor-button:hover {
   font-weight: 700;
   padding: 11px 27px;
   font-size: 15px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 991px) {
   .header_part .header .cu_btn {
     margin: 15px;
+    width: calc(100% - 30px);
+    text-align: center;
   }
 }
 .header_part .dropdown-menu {
@@ -1139,7 +1177,123 @@ a.elementor-button, .elementor-button:hover {
     border: 0 solid transparent;
     padding: 0;
     font-size: 22px;
+    display: none;
   }
+  
+  /* Ensure proper flex behavior for navbar collapse */
+.header_part .header .navbar .navbar-collapse {
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* Logo and brand alignment */
+.header_part .header .navbar .navbar-brand {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header_part .header .navbar .navbar-brand img {
+  max-height: 60px;
+  width: auto;
+}
+
+/* Container adjustments for better spacing */
+.header_part .header .container {
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+/* Admission Modal Styles */
+#admissionModal .modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#admissionModal .modal-header {
+  background: linear-gradient(135deg, #ff91dd 0%, #ff6b9d 100%);
+  color: white;
+  border-radius: 15px 15px 0 0;
+  border-bottom: none;
+  padding: 20px 30px;
+}
+
+#admissionModal .modal-title {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+#admissionModal .close {
+  color: white;
+  opacity: 0.8;
+  font-size: 1.5rem;
+}
+
+#admissionModal .close:hover {
+  opacity: 1;
+  color: white;
+}
+
+#admissionModal .modal-body {
+  padding: 30px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#admissionModal .modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 20px 30px;
+  background-color: #f8f9fa;
+  border-radius: 0 0 15px 15px;
+}
+
+#admissionModal .form-group {
+  margin-bottom: 20px;
+}
+
+#admissionModal .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+#admissionModal .form-control:focus {
+  border-color: #ff91dd;
+  box-shadow: 0 0 0 0.2rem rgba(255, 145, 221, 0.25);
+}
+
+#admissionModal label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+#admissionModal .form-check-label {
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  #admissionModal .modal-dialog {
+    margin: 10px;
+  }
+  
+  #admissionModal .modal-body {
+    padding: 20px;
+    max-height: 60vh;
+  }
+  
+  #admissionModal .modal-header,
+  #admissionModal .modal-footer {
+    padding: 15px 20px;
+  }
+}
   .header_part .navbar-nav {
     margin-right: 0;
   }
@@ -1154,6 +1308,7 @@ a.elementor-button, .elementor-button:hover {
     z-index: 9;
     width: 100%;
     box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.05);
+    left: 0;
   }
   .header_part .dropdown-item {
     padding: 8px 10px;
@@ -1279,6 +1434,13 @@ a.elementor-button, .elementor-button:hover {
   filter: none;
 }
 
+.breadcrumb_part {
+  height: 200px;  
+  display: flex;
+  align-items: center;  
+}
+
+
 /******** header css end *********/
 .breadcrumb_part {
   background-image: url("../img/banner/1b.jpg");
@@ -1288,21 +1450,21 @@ a.elementor-button, .elementor-button:hover {
   position: relative;
   display: flex;
   align-items: center;
-  height: 400px;
+  height: 200px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .breadcrumb_part {
-    height: 350px;
+    height: 180px;
   }
 }
 @media (max-width: 991px) {
   .breadcrumb_part {
-    height: 350px;
+    height: 150px;
   }
 }
 .breadcrumb_part .breadcrumb_iner {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 @media (max-width: 991px) {
   .breadcrumb_part .breadcrumb_iner {
@@ -1310,22 +1472,22 @@ a.elementor-button, .elementor-button:hover {
   }
 }
 .breadcrumb_part h2 {
-  font-size: 55px;
+  font-size: 35px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 11px;
+  margin-bottom: 8px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .breadcrumb_part h2 {
-    font-size: 35px;
-    line-height: 45px;
+    font-size: 28px;
+    line-height: 35px;
     margin-bottom: 5px;
   }
 }
 @media (max-width: 991px) {
   .breadcrumb_part h2 {
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 28px;
     margin-bottom: 5px;
   }
 }
@@ -1335,14 +1497,14 @@ a.elementor-button, .elementor-button:hover {
   align-items: center;
 }
 .breadcrumb_part .breadcrumb_iner_link a {
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
 }
 .breadcrumb_part .breadcrumb_iner_link a:hover {
   color: #ff91dd;
 }
 .breadcrumb_part .breadcrumb_iner_link p {
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   font-family: "Nunito", sans-serif;
 }
@@ -6841,4 +7003,482 @@ a.elementor-button, .elementor-button:hover {
 /*# sourceMappingURL=style.css.map */
 .color-white{
   color:white;
+}
+
+/* Admission Dropdown Styles */
+.admission-dropdown {
+  width: 600px;
+  padding: 0;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  margin-top: 10px;
+}
+
+.admission-content {
+  display: flex;
+  padding: 25px;
+}
+
+.grade-levels {
+  flex: 1;
+  padding-right: 25px;
+  border-right: 1px solid #e9ecef;
+}
+
+.grade-levels h5 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.grade-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.grade-list li {
+  margin-bottom: 8px;
+}
+
+.grade-list li a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.grade-list li a:hover {
+  background: #f8f9fa;
+  color: #007bff;
+  transform: translateX(5px);
+}
+
+.grade-list li a.active {
+  background: #007bff;
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.apply-form {
+  flex: 1;
+  padding-left: 25px;
+}
+
+.apply-form h5 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.admission-form .form-group {
+  margin-bottom: 12px;
+}
+
+.admission-form .form-control {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.admission-form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.apply-btn {
+  background: #007bff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Responsive styles for admission dropdown */
+@media (max-width: 768px) {
+  .admission-dropdown {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .admission-content {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .grade-levels {
+    padding-right: 0;
+    padding-bottom: 20px;
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 20px;
+  }
+  
+  .apply-form {
+    padding-left: 0;
+  }
+}
+
+/* Admission Page Styles */
+.admission_info_section {
+  background: #fff;
+}
+
+.single_admission_info {
+  background: #f8f9fa;
+  padding: 30px 25px;
+  border-radius: 15px;
+  text-align: center;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.single_admission_info:hover {
+  transform: translateY(-5px);
+  border-color: #007bff;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
+}
+
+.single_admission_info .admission_icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.single_admission_info .admission_icon i {
+  font-size: 32px;
+  color: #fff;
+}
+
+.single_admission_info h4 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.single_admission_info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.single_admission_info ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  color: #666;
+  font-size: 14px;
+}
+
+.single_admission_info ul li:last-child {
+  border-bottom: none;
+}
+
+.single_admission_info ul li strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.admission_form_wrapper {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.comprehensive_admission_form .form-group {
+  margin-bottom: 20px;
+}
+
+.comprehensive_admission_form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.comprehensive_admission_form .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.comprehensive_admission_form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.comprehensive_admission_form textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.comprehensive_admission_form .form-check {
+  margin-top: 20px;
+}
+
+.comprehensive_admission_form .form-check-input {
+  margin-right: 10px;
+}
+
+.comprehensive_admission_form .form-check-label {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.why_choose_section {
+  background: #f8f9fa;
+}
+
+.single_why_choose {
+  text-align: center;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 15px;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.single_why_choose:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.single_why_choose .why_choose_icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.single_why_choose .why_choose_icon i {
+  font-size: 28px;
+  color: #fff;
+}
+
+.single_why_choose h4 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.single_why_choose p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive styles for admission page */
+@media (max-width: 768px) {
+  .admission_form_wrapper {
+    padding: 25px 20px;
+  }
+  
+  .single_admission_info {
+    padding: 25px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .single_why_choose {
+    padding: 25px 15px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Vision Mission Section Styles */
+.vision_mission_part {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.vision_mission_part [class^=vision_mission_animation_], 
+.vision_mission_part [class*=vision_mission_animation_] {
+  position: absolute;
+  z-index: -1;
+}
+
+.vision_mission_part .vision_mission_animation_1 {
+  left: 5%;
+  top: 15%;
+}
+
+.vision_mission_part .vision_mission_animation_2 {
+  right: 5%;
+  top: 25%;
+}
+
+.vision_mission_part .vision_mission_animation_3 {
+  left: 10%;
+  bottom: 20%;
+}
+
+@media (max-width: 767.98px) {
+  .vision_mission_part .vision_mission_animation_1 img,
+  .vision_mission_part .vision_mission_animation_2 img,
+  .vision_mission_part .vision_mission_animation_3 img {
+    max-width: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .vision_mission_part .vision_mission_animation_1 img,
+  .vision_mission_part .vision_mission_animation_2 img,
+  .vision_mission_part .vision_mission_animation_3 img {
+    max-width: 50px;
+  }
+}
+
+.single_vision_mission {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.single_vision_mission:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.single_vision_mission .vision_mission_icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #fc517f, #ff6b9d);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  position: relative;
+}
+
+.single_vision_mission .vision_mission_icon i {
+  font-size: 32px;
+  color: #fff;
+}
+
+.single_vision_mission h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #32355d;
+  margin-bottom: 20px;
+  font-family: "Nunito", sans-serif;
+}
+
+.single_vision_mission p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+@media (max-width: 767.98px) {
+  .single_vision_mission {
+    padding: 30px 20px;
+    margin-bottom: 30px;
+  }
+  
+  .single_vision_mission .vision_mission_icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .single_vision_mission .vision_mission_icon i {
+    font-size: 24px;
+  }
+  
+  .single_vision_mission h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .single_vision_mission p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .single_vision_mission {
+    padding: 35px 25px;
+  }
+  
+  .single_vision_mission h3 {
+    font-size: 26px;
+  }
+}
+
+/* Party Paper Effect */
+.party-paper {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #5f27cd);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: partyPaperFall 3s ease-in forwards;
+}
+
+@keyframes partyPaperFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.party-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
 }

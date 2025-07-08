@@ -173,6 +173,214 @@
         $(".loader").delay(3000).hide("slow");
     });
 
+    // Admission Form Functionality
+    $(document).ready(function() {
+        // Handle grade selection from the list
+        $('.grade-list li a').on('click', function(e) {
+            e.preventDefault();
+            var selectedGrade = $(this).data('grade');
+            $('.admission-form select').val(selectedGrade);
+            
+            // Highlight selected grade
+            $('.grade-list li a').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Handle comprehensive admission form submission
+        $('#admissionForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            var submitBtn = $(this).find('button[type="submit"]');
+            var originalText = submitBtn.text();
+            submitBtn.html('<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...');
+            submitBtn.prop('disabled', true);
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(function() {
+                // Show success message
+                $('#admissionModal .modal-body').html(`
+                    <div class="text-center py-5">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                        <h4 class="mt-3 text-success">Application Submitted Successfully!</h4>
+                        <p class="text-muted">Thank you for your interest in Abivruthi Kindergarten. We will contact you within 24 hours to discuss the next steps.</p>
+                        <div class="mt-3">
+                            <span class="text-muted">This window will close automatically in <span id="countdown">5</span> seconds...</span>
+                        </div>
+                    </div>
+                `);
+                
+                // Create party paper effect
+                createPartyPaperEffect();
+                
+                // Start countdown and auto-close
+                var countdown = 5;
+                var countdownInterval = setInterval(function() {
+                    countdown--;
+                    $('#countdown').text(countdown);
+                    
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                        $('#admissionModal').modal('hide');
+                    }
+                }, 1000);
+                
+                // Reset form
+                $('#admissionForm')[0].reset();
+            }, 2000);
+        });
+
+        // Reset form when modal is closed
+        $('#admissionModal').on('hidden.bs.modal', function() {
+            setTimeout(function() {
+                location.reload(); // Reload to reset the form
+            }, 500);
+        });
+
+        // Handle form submission
+        $('.admission-form').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = {
+                childName: $(this).find('input[type="text"]').first().val(),
+                grade: $(this).find('select').val(),
+                parentName: $(this).find('input[type="text"]').eq(1).val(),
+                phone: $(this).find('input[type="tel"]').val(),
+                email: $(this).find('input[type="email"]').val()
+            };
+
+            // Basic validation
+            if (!formData.childName || !formData.grade || !formData.parentName || !formData.phone || !formData.email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Phone validation
+            var phoneRegex = /^[0-9+\-\s()]+$/;
+            if (!phoneRegex.test(formData.phone)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+
+            // Show success message
+            alert('Thank you! Your admission application has been submitted successfully. We will contact you soon.');
+            
+            // Reset form
+            $(this)[0].reset();
+            $('.grade-list li a').removeClass('active');
+        });
+
+        // Auto-fill grade when dropdown changes
+        $('.admission-form select').on('change', function() {
+            var selectedGrade = $(this).val();
+            $('.grade-list li a').removeClass('active');
+            $('.grade-list li a[data-grade="' + selectedGrade + '"]').addClass('active');
+        });
+
+        // Comprehensive Admission Form Functionality
+        $('#admissionForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = {
+                childName: $('#childName').val(),
+                childDOB: $('#childDOB').val(),
+                gradeLevel: $('#gradeLevel').val(),
+                session: $('#session').val(),
+                fatherName: $('#fatherName').val(),
+                motherName: $('#motherName').val(),
+                phoneNumber: $('#phoneNumber').val(),
+                emailAddress: $('#emailAddress').val(),
+                address: $('#address').val(),
+                previousSchool: $('#previousSchool').val(),
+                emergencyContact: $('#emergencyContact').val(),
+                specialNeeds: $('#specialNeeds').val(),
+                agreeTerms: $('#agreeTerms').is(':checked')
+            };
+
+            // Basic validation
+            if (!formData.childName || !formData.childDOB || !formData.gradeLevel || 
+                !formData.session || !formData.fatherName || !formData.motherName || 
+                !formData.phoneNumber || !formData.emailAddress || !formData.address || 
+                !formData.emergencyContact || !formData.agreeTerms) {
+                alert('Please fill in all required fields marked with *.');
+                return;
+            }
+
+            // Email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.emailAddress)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Phone validation
+            var phoneRegex = /^[0-9+\-\s()]+$/;
+            if (!phoneRegex.test(formData.phoneNumber) || !phoneRegex.test(formData.emergencyContact)) {
+                alert('Please enter valid phone numbers.');
+                return;
+            }
+
+            // Age validation based on grade level
+            var today = new Date();
+            var birthDate = new Date(formData.childDOB);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            var expectedAge = {
+                'Pre-KG': { min: 2.5, max: 3.5 },
+                'Nursery': { min: 3.5, max: 4.5 },
+                'LKG': { min: 4.5, max: 5.5 },
+                'UKG': { min: 5.5, max: 6.5 }
+            };
+
+            var selectedGrade = expectedAge[formData.gradeLevel];
+            if (age < selectedGrade.min || age > selectedGrade.max) {
+                alert('The child\'s age does not match the selected grade level. Please check the age requirements.');
+                return;
+            }
+
+            // Show success message
+            alert('Thank you! Your admission application has been submitted successfully. We will contact you within 24 hours to schedule an interview and complete the admission process.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Auto-calculate age and suggest grade level
+        $('#childDOB').on('change', function() {
+            var birthDate = new Date($(this).val());
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            var suggestedGrade = '';
+            if (age >= 2.5 && age <= 3.5) suggestedGrade = 'Pre-KG';
+            else if (age >= 3.5 && age <= 4.5) suggestedGrade = 'Nursery';
+            else if (age >= 4.5 && age <= 5.5) suggestedGrade = 'LKG';
+            else if (age >= 5.5 && age <= 6.5) suggestedGrade = 'UKG';
+
+            if (suggestedGrade) {
+                $('#gradeLevel').val(suggestedGrade);
+                alert('Based on the child\'s age, we suggest ' + suggestedGrade + ' grade level.');
+            }
+        });
+    });
+
     // map js
     if ($('#contactMap').length) {
         var $lat = $('#contactMap').data('lat');
@@ -310,5 +518,35 @@
         kidjoHover();
     });
 
+    // Party Paper Effect Function
+    function createPartyPaperEffect() {
+        // Create party container if it doesn't exist
+        if (!$('.party-container').length) {
+            $('body').append('<div class="party-container"></div>');
+        }
+        
+        // Create multiple party papers
+        for (var i = 0; i < 50; i++) {
+            setTimeout(function() {
+                var paper = $('<div class="party-paper"></div>');
+                paper.css({
+                    left: Math.random() * 100 + '%',
+                    animationDelay: Math.random() * 0.5 + 's',
+                    animationDuration: (Math.random() * 2 + 2) + 's'
+                });
+                $('.party-container').append(paper);
+                
+                // Remove paper after animation
+                setTimeout(function() {
+                    paper.remove();
+                }, 5000);
+            }, i * 50);
+        }
+        
+        // Clean up party container after all animations
+        setTimeout(function() {
+            $('.party-container').remove();
+        }, 8000);
+    }
 
 }(jQuery));
