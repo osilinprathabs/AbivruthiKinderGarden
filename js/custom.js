@@ -22,6 +22,19 @@
             fixedContentPos: false
         });
     }
+    
+    // Video gallery popup
+    var video_gallery_popup = $('.video_popup_btn');
+    if (video_gallery_popup.length > 0) {
+        video_gallery_popup.magnificPopup({
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+            fixedContentPos: false
+        });
+    }
+    
     var video_popup = $('.gallery_popup_img');
     if (video_popup.length > 0) {
         video_popup.magnificPopup({
