@@ -324,6 +324,73 @@
     </section>
     <!-- services part end -->
 
+           <!-- testimonial part here -->
+        
+        <section class="teacher_list section_padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section_tittle_style_02">
+                            <h2 class="title wow fadeInDown" data-wow-delay=".3s">Our section</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="teacher_list_iner">
+                            <!-- <div class="single_teacher_list">
+                                <div class="teacher_list_img square">
+                                    <img src="img/full/nt1.png" alt="#" class="img-fluid">
+                                </div>
+                                <h5>Instruction</h5>
+                            </div> -->
+                            <div class="single_teacher_list" data-toggle="modal" data-target="#guidanceModal" style="cursor:pointer;">
+                                <div class="teacher_list_img circle">
+                                    <img src="img/full/nt-22.png" alt="#" class="img-fluid">
+                                </div>
+                                <h5>Guidance</h5>
+                            </div>
+                            <div class="single_teacher_list" data-toggle="modal" data-target="#assessmentModal" style="cursor:pointer;">
+                                <div class="teacher_list_img square">
+                                    <img src="img/full/nt3.png" alt="#" class="img-fluid">
+                                </div>
+                                <h5>Assessment</h5>
+                            </div>
+                            <!-- <div class="single_teacher_list">
+                                <div class="teacher_list_img circle">
+                                    <img src="img/full/nt-4.png" alt="#" class="img-fluid">
+                                </div>
+                                <h5>Motivation</h5>
+                            </div> -->
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="teacher_list_animation_1">
+                <div><img src="img/icon/event_6.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_animation_2">
+                <div><img src="img/icon/icon_1.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_animation_3">
+                <div><img src="img/icon/banner_icon/animated_banner_5.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_animation_4">
+                <div><img src="img/icon/icon_2.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_animation_5">
+                <div><img src="img/icon/icon_3.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_animation_6">
+                <div><img src="img/icon/icon_4.png" alt="#"></div>
+            </div>
+            <div class="teacher_list_shape">
+                <div><img src="img/teacher_list_shape.png" alt="#"></div>
+            </div>
+        </section>
+        
+    <!-- testimonial part end -->
+
     <!-- services part here -->
     <section class="about_section padding_top">
         <div class="container custom_container">
@@ -368,6 +435,8 @@
         </div>
     </section>
     <!-- services part end -->
+
+    
     
 
     <?php include 'footer.php'; ?>
@@ -394,6 +463,52 @@
     <script src="vendors/magnify_popup/jquery.magnific-popup.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+
+    <!-- Guidance Modal -->
+    <div class="modal fade" id="guidanceModal" tabindex="-1" role="dialog" aria-labelledby="guidanceModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="guidanceModalLabel">Guidelines</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Your guidelines content here -->
+            <ul>
+              <li>Respect your teachers and classmates.</li>
+              <li>Always try your best and ask questions.</li>
+              <li>Keep your classroom tidy and organized.</li>
+              <li>Be kind and helpful to everyone.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Modal -->
+    <div class="modal fade" id="assessmentModal" tabindex="-1" role="dialog" aria-labelledby="assessmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="assessmentModalLabel">Assessment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Your assessment content here -->
+            <ul>
+              <li>Regular observation of participation in class activities.</li>
+              <li>Creative work and project submissions.</li>
+              <li>Development of social and communication skills.</li>
+              <li>Progress in basic literacy and numeracy.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 

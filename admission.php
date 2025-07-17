@@ -54,7 +54,7 @@
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             border: none;
-            padding: 30px 40px;
+            padding: 20px 30px;
             position: relative;
             text-align: center;
         }
@@ -84,7 +84,7 @@
             font-size: 32px;
             position: relative;
             z-index: 1;
-            background: rgba(255,255,255,0.2);
+            background: rgba(228, 30, 30, 0.2);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -294,7 +294,7 @@
         .modal-footer {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             border: none;
-            padding: 25px 40px;
+            padding: 1px 30px;
             position: relative;
         }
         
@@ -303,7 +303,7 @@
             border: 2px solid rgba(255,255,255,0.3);
             color: white;
             border-radius: 15px;
-            padding: 15px 30px;
+            padding: 8px 15px;
             font-weight: 600;
             font-size: 16px;
             transition: all 0.3s ease;
@@ -697,7 +697,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section_tittle_style_02 text-center">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s">Welcome to Abivruthi Kindergarten</h2>
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s">Welcome to Abivruthi Kindergaden</h2>
                         <p class="description wow fadeInDown" data-wow-delay=".4s">Join our nurturing community where every child's potential is celebrated and developed through innovative learning experiences.</p>
                     </div>
                 </div>
@@ -828,7 +828,7 @@
 
     <!-- Admission Form Modal -->
     <div class="modal fade" id="admissionModal" tabindex="-1" role="dialog" aria-labelledby="admissionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="admissionModalLabel">
