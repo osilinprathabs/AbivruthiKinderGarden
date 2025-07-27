@@ -730,8 +730,8 @@
                         <h4>School Hours</h4>
                         <ul>
                             <li><strong>Morning Session:</strong> 9:00 AM - 12:30 PM</li>
-                            <li><strong>Afternoon Session:</strong> 2:00 PM - 5:30 PM</li>
-                            <li><strong>Full Day:</strong> 9:00 AM - 5:30 PM</li>
+                            <li><strong>Afternoon Session:</strong> 1:15 PM - 3:45 PM</li>
+                            <li><strong>Full Day:</strong> 9:00 AM - 3:45 PM</li>
                             <li><strong>Office Hours:</strong> 8:00 AM - 6:00 PM</li>
                         </ul>
                     </div>
@@ -744,7 +744,7 @@
                         <h4>Academic Year</h4>
                         <ul>
                             <li><strong>Session Start:</strong> June </li>
-                            <li><strong>Admission Open:</strong> January - May</li>
+                            <li><strong>Admission Open:</strong> Full Academic Year</li>
                             <li><strong>Documents Required:</strong> Birth Certificate, Photos</li>
                             <li><strong>Age Proof:</strong> Aadhar Card/Passport</li>
                         </ul>
@@ -870,7 +870,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="childName">Child's Full Nameddd <span class="required">*</span></label>
+                                            <label for="childName">Child's Full Name <span class="required">*</span></label>
                                             <input type="text" class="form-control" id="childName" name="childName" placeholder="Enter child's full name" required>
                                         </div>
                                     </div>

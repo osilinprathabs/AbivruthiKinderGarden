@@ -14,10 +14,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <a href="tel:+919047676525"><i class="fas fa-phone"></i>+919047676525</a>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-5 col-md-4">
+                <div class="col-xl-6 col-lg-7 col-md-4">
                     <div class="header_social_icon">
                         <p>Chat with us :</p>
                         <a href="https://wa.me/+919047676525"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/abivruthi_kindergarten/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/abivruthikindergarten"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@abivruthikindergarten"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/abivruthikinder"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.google.com/search?q=abivruthi&oq=abi&gs_lcrp=EgZjaHJvbWUqCAgDEEUYJxg7MgYIABBFGDwyBwgBEC4YgAQyBggCEEUYOTIICAMQRRgnGDsyBwgEEC4YgAQyBwgFEAAYgAQyBggGEEUYPDIGCAcQRRg80gEINzM5OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x3bad472bc2572825:0xd5e2a355a35f497e,1,,,,"><i class="fas fa-star"></i></a>
+
                     </div>
                 </div>
             </div>

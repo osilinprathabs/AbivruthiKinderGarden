@@ -255,7 +255,7 @@
     <!-- fetures part end -->
 
     <!-- services part here -->
-    <section class="event_part section_padding section_bg_2">
+    <!-- <section class="event_part section_padding section_bg_2">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
@@ -321,7 +321,7 @@
         <div class="event_animation_3">
             <div><img src="img/icon/event_3.png" alt="#"></div>
         </div>
-    </section>
+    </section> -->
     <!-- services part end -->
 
            <!-- testimonial part here -->
