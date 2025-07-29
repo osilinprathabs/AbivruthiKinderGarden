@@ -697,7 +697,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section_tittle_style_02 text-center">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s">Welcome to Abivruthi Kindergaden</h2>
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s">Welcome to Abivruthi Kindergaten</h2>
                         <p class="description wow fadeInDown" data-wow-delay=".4s">Join our nurturing community where every child's potential is celebrated and developed through innovative learning experiences.</p>
                     </div>
                 </div>

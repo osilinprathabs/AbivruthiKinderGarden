@@ -4,6 +4,8 @@
 <head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W54MDY769G"></script>
+
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -207,65 +209,65 @@
     </section>
     <!-- vision mission part end -->
     
-    <!-- testimonial part here -->
-    <section class="testimonial_part section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="section_tittle_style_02">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s">What Parents Say</h2>
-                        <p class="description wow fadeInDown" data-wow-delay=".3s">Kidzo mission is to provide affordable, high-quality 
-                            early education and childcare services for working families to ensure every child.</p>
-                    </div>
+<!-- testimonial part here -->
+<section class="testimonial_part section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="section_tittle_style_02">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s">What Parents Say</h2>
+                    <p class="description wow fadeInDown" data-wow-delay=".3s">Kidzo mission is to provide affordable, high-quality 
+                        early education and childcare services for working families to ensure every child.</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="testimonial_slider owl-carousel">
-                        <div class="single_testimonial_slider">
-                            <div class="client_speech bg_1">
-                                <img src="img/quote.png" alt="#">
-                                <p>Abivruthi Kindergarten School has exceeded our expectations in every way. 
-                                 The dedicated and professional team of teachers creates a nurturing atmosphere where our child feels valued and encouraged to explore.
-                                 The well-rounded curriculum, which includes arts, science, and physical activities, has significantly boosted our child's enthusiasm for learning and overall development.</p>
-                                <img src="img/shape_1.png" alt="#" class="client_speech_shape">
-                            </div>
-                            <div class="client_info">
-                                <img src="img/full/person1.jpg" alt="#">
-                                <h4>Eshwar <span>Father of 2 kids</span> </h4>
-                            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="testimonial_slider owl-carousel">
+                    <div class="single_testimonial_slider">
+                        <div class="client_speech text-center">
+                            <img src="img/review/review1.jpeg" alt="Review 1" class="img-fluid">
                         </div>
-                        <div class="single_testimonial_slider">
-                            <div class="client_speech bg_2">
-                                <img src="img/quote.png" alt="#">
-                                <p>Abivruthi Kindergarten School has been a wonderful experience for our family. The staff is not only highly qualified but also genuinely passionate about early childhood education. 
-                                    Our child looks forward to going to school every day, thanks to the engaging and fun learning activities.
-                                   The school's emphasis on safety and communication gives us peace of mind, knowing our child is in good hands.</p>
-                                <img src="img/shape_2.png" alt="#" class="client_speech_shape">
-                            </div>
-                            <div class="client_info">
-                                <img src="img/full/person2.jpg" alt="#">
-                                <h4>Hemanth Surya<span>Father of 3 kids</span> </h4>
-                            </div>
+                    </div>
+                    <div class="single_testimonial_slider">
+                        <div class="client_speech text-center">
+                            <img src="img/review/review2.jpeg" alt="Review 2" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="single_testimonial_slider">
+                        <div class="client_speech text-center">
+                            <img src="img/review/review3.jpeg" alt="Review 3" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="single_testimonial_slider">
+                        <div class="client_speech text-center">
+                            <img src="img/review/review4.jpeg" alt="Review 4" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="single_testimonial_slider">
+                        <div class="client_speech text-center">
+                            <img src="img/review/review5.jpeg" alt="Review 5" class="img-fluid">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="testimonial_animation_1">
-            <div><img src="img/icon/feature_5.png" alt="#"></div>
-        </div>
-        <div class="testimonial_animation_2">
-            <div><img src="img/icon/event_4.png" alt="#"></div>
-        </div>
-        <div class="testimonial_animation_3">
-            <div><img src="img/icon/event_6.png" alt="#"></div>
-        </div>
-        <div class="testimonial_animation_4">
-            <div><img src="img/icon/event_7.png" alt="#"></div>
-        </div>
-    </section>
-    <!-- testimonial part end -->
+    </div>
+    <div class="testimonial_animation_1">
+        <div><img src="img/icon/feature_5.png" alt="#"></div>
+    </div>
+    <div class="testimonial_animation_2">
+        <div><img src="img/icon/event_4.png" alt="#"></div>
+    </div>
+    <div class="testimonial_animation_3">
+        <div><img src="img/icon/event_6.png" alt="#"></div>
+    </div>
+    <div class="testimonial_animation_4">
+        <div><img src="img/icon/event_7.png" alt="#"></div>
+    </div>
+</section>
+<!-- testimonial part end -->
+
 
     <?php include 'footer.php'; ?>
 
@@ -295,3 +297,19 @@
 </body>
 
 </html> 
+
+<script>
+$(document).ready(function(){
+    $('.testimonial_slider').owlCarousel({
+        loop: true,
+        margin: 30,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        items: 1,
+        rtl: false
+    });
+});
+</script>

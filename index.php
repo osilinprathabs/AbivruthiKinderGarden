@@ -99,6 +99,47 @@
     </section>
     <!-- banner part end -->
 
+<!--Tab Part -->
+<section class="program_list program_list_page section_padding" id="program_list">
+    <div class="container custom_container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="filters">
+                    <ul>
+                        <li data-filter=".week_activities" class="active">This Week Highlights</li>
+                        <li data-filter=".celebration">Celebration</li>
+                        <li data-filter=".dayCorner">Day Care Corner</li>
+                        <li data-filter=".club_activities">Club Activities</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row grid program_list_filter">
+                    <p class="text-center text-muted" id="no-media-message" style="display: none;">No media available.</p>
+                </div>
+            </div>
+        </div>
+        <div class="list_animation_1">
+            <div><img src="img/icon/story_animation_5.png" alt="#"></div>
+        </div>
+        <div class="list_animation_2">
+            <div><img src="img/icon/event_6.png" alt="#"></div>
+        </div>
+        <div class="list_animation_3">
+            <div><img src="img/icon/icon_8.png" alt="#"></div>
+        </div>
+        <div class="list_animation_4">
+            <div><img src="img/icon/contact_icon.png" alt="#"></div>
+        </div>
+        <div class="list_animation_5">
+            <div><img src="img/icon/story_animation_5.png" alt="#"></div>
+        </div>
+        <div class="list_animation_6">
+            <div><img src="img/icon/icon_9.png" alt="#"></div>
+        </div>
+    </section>
+<!--Tab Part end-->
+
     <!-- services part here -->
     <section class="services_part wave_shape_bg sec_padding">
         <div class="container">
@@ -513,3 +554,95 @@
 
 
 </html> 
+ 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filters li");
+    const gridContainer = document.querySelector(".program_list_filter");
+
+function loadMedia(filter) {
+    console.log('Loading media for filter:', filter);
+    const staticData = {
+        week_activities: [
+            { type: "image", src: "img/week_activities/highlight1.jpg" }
+        ],
+        club_activities: [
+            { type: "image", src: "img/club_activities/club1.jpg" }
+        ],
+        celebration: [
+            { type: "image", src: "img/celebration/event1.jpg" }
+        ],
+        dayCorner: [
+            { type: "image", src: "img/dayCorner/daycare1.jpg" }
+        ]
+    };
+    const files = staticData[filter] || [];
+    console.log('Using static files for', filter, ':', files);
+    gridContainer.innerHTML = "";
+    if (files.length === 0) {
+        console.log('No files returned for', filter);
+        gridContainer.innerHTML = "";
+        document.getElementById("no-media-message").style.display = "block";
+        return;
+    }
+    document.getElementById("no-media-message").style.display = "none";
+    const images = files.filter(item => item.type === "image");
+    const videos = files.filter(item => item.type === "video");
+    const sortedFiles = [...images, ...videos];
+    console.log('Sorted files for', filter, ':', sortedFiles);
+    sortedFiles.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = `col-lg-3 col-sm-12 col-md-6 grid-item ${filter}`;
+        div.style.display = "block";
+        const inner = document.createElement("div");
+        inner.className = "single_program_list";
+        if (item.type === "image") {
+            inner.innerHTML = `<img src="${item.src}" class="img-fluid" alt="Image" onerror="console.error('Failed to load image: ${item.src}')">`;
+        } else if (item.type === "video") {
+            inner.innerHTML = `<video class="w-100 rounded shadow" muted controls src="${item.src}" onerror="console.error('Failed to load video: ${item.src}')"></video>`;
+        }
+        div.appendChild(inner);
+        gridContainer.appendChild(div);
+    });
+    $(gridContainer).imagesLoaded(function () {
+        console.log('Isotope initializing for', filter);
+        $(gridContainer).isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'masonry',
+            masonry: {
+                columnWidth: '.grid-item',
+                gutter: 10
+            }
+        });
+    });
+}
+    // Default load for "This Week Highlights"
+    loadMedia("week_activities");
+
+    // Handle click events for filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+            const filter = this.getAttribute("data-filter").slice(1);
+            console.log('Filter clicked:', filter);
+            loadMedia(filter);
+            $(gridContainer).isotope({ filter: `.${filter}` });
+        });
+    });
+
+    // Initialize Isotope on page load
+    $(gridContainer).imagesLoaded(function () {
+        console.log('Initial Isotope setup');
+        $(gridContainer).isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'masonry',
+            masonry: {
+                columnWidth: '.grid-item',
+                gutter: 10
+            }
+        });
+    });
+});
+</script>
