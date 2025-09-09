@@ -16,7 +16,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </div>
                 <div class="col-xl-6 col-lg-7 col-md-4">
                     <div class="header_social_icon">
-                        <p>Chat with us :</p>
+                        <p class="mb-0 me-2">Chat with us :</p>
                         <a href="https://wa.me/+919047676525"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/abivruthi_kindergarten/"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/abivruthikindergarten"><i class="fab fa-facebook-f"></i></a>

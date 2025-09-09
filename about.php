@@ -41,6 +41,109 @@
     <link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* About Video Popup Styles */
+        .mfp-container .about-video-popup-content {
+            max-width: 800px; /* Larger for about video */
+            max-height: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 8px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .mfp-container .about-video-popup-content video {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        /* Close button styling for about video */
+        .about-video-popup-content .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: #ff4d4d;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .about-video-popup-content .close-btn:hover {
+            background: #cc0000;
+        }
+        /* Mobile adjustments for about video */
+        @media (max-width: 576px) {
+            .mfp-container .about-video-popup-content {
+                max-width: 95vw;
+                max-height: 70vh;
+                padding: 10px;
+            }
+            .mfp-container .about-video-popup-content video {
+                max-height: 60vh;
+            }
+            .about-video-popup-content .close-btn {
+                top: -10px;
+                right: -10px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 18px;
+            }
+        }
+        /* Video section styling */
+        .video_section {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video_section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .video_section .video_popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .video_section .video_popup:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .video_section .video_popup .polygon_shape {
+            width: 0;
+            height: 0;
+            border-left: 25px solid #ff6b6b;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .video_section .video_popup:hover .polygon_shape {
+            border-left-color: #e55a5a;
+        }
+    </style>
 </head>
 
 <body>
@@ -144,8 +247,53 @@
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
                     <div class="video_section">
-                        <img src="img/full/4 (1).jpg" alt="#" class="img-fluid">
-                        <a href="https://www.youtube.com/watch?v=oiHulAQmdqI" class="video_popup"><span class="polygon_shape"></span></a>
+                        <?php
+                        $about_video = 'videos/abivruthiabout.mp4';
+                        $about_thumbnail = 'img/full/4 (1).jpg'; // Keep existing thumbnail or generate one
+                        $video_id = 'about_video_popup';
+                        
+                        // Optional: Generate thumbnail if needed (using same FFmpeg function as gallery)
+                        function generateAboutThumbnailIfNeeded($video_path, $thumbnail_path, $second = 1, $thumb_size = '800x450') {
+                            if (!file_exists($thumbnail_path)) {
+                                $ffmpeg_path = 'ffmpeg';
+                                $cmd = "{$ffmpeg_path} -i " . escapeshellarg($video_path) . " -ss {$second} -vframes 1 -s {$thumb_size} " . escapeshellarg($thumbnail_path) . " 2>/dev/null";
+                                $output = shell_exec($cmd);
+                                if (!file_exists($thumbnail_path)) {
+                                    error_log("Failed to generate about thumbnail for: " . $video_path);
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                        
+                        // Generate thumbnail for about video if missing
+                        $custom_thumbnail = 'img/full/abivruthiabout.jpg';
+                        if (file_exists($about_video)) {
+                            generateAboutThumbnailIfNeeded($about_video, $custom_thumbnail);
+                            if (file_exists($custom_thumbnail)) {
+                                $about_thumbnail = $custom_thumbnail;
+                            }
+                        }
+                        ?>
+                        
+                        <img src="<?php echo htmlspecialchars($about_thumbnail); ?>" alt="About Abivruthi Kindergarten" class="img-fluid">
+                        <?php if (file_exists($about_video)): ?>
+                        <a href="#<?php echo $video_id; ?>" class="video_popup">
+                            <span class="polygon_shape"></span>
+                        </a>
+                        <div id="<?php echo $video_id; ?>" class="mfp-hide about-video-popup-content">
+                            <div class="close-btn" onclick="$.magnificPopup.close();">&times;</div>
+                            <video controls autoplay width="100%" height="auto">
+                                <source src="<?php echo htmlspecialchars($about_video); ?>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <?php else: ?>
+                        <!-- Fallback to YouTube if local video doesn't exist -->
+                        <a href="https://www.youtube.com/watch?v=oiHulAQmdqI" class="video_popup">
+                            <span class="polygon_shape"></span>
+                        </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -268,7 +416,6 @@
 </section>
 <!-- testimonial part end -->
 
-
     <?php include 'footer.php'; ?>
 
     <!-- jquery slim -->
@@ -294,9 +441,6 @@
     <script src="vendors/isotop/isotope.pkgd.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
-</body>
-
-</html> 
 
 <script>
 $(document).ready(function(){
@@ -311,5 +455,36 @@ $(document).ready(function(){
         items: 1,
         rtl: false
     });
+
+    // Initialize Magnific Popup for about video
+    $('.video_popup').magnificPopup({
+        type: 'inline',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false,
+        callbacks: {
+            open: function() {
+                // Autoplay the about video when popup opens
+                var aboutVideo = this.content.find('video')[0];
+                if (aboutVideo && aboutVideo.paused) {
+                    aboutVideo.play().catch(function(error) {
+                        console.log('Autoplay prevented for about video:', error);
+                    });
+                }
+            },
+            close: function() {
+                // Pause the about video when closing
+                var aboutVideo = this.content.find('video')[0];
+                if (aboutVideo) {
+                    aboutVideo.pause();
+                }
+            }
+        }
+    });
 });
 </script>
+
+</body>
+
+</html>

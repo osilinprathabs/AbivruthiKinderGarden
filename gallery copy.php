@@ -20,6 +20,8 @@
         })(window,document,'script','dataLayer','GTM-NV6M2DGN');</script>
         <!-- End Google Tag Manager -->
     <!-- Required meta tags -->
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>ABIVRUTHI KINDERGARTEN</title>
@@ -40,92 +42,6 @@
     <link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-        /* Compact Video Popup Styles */
-        .mfp-container .video-popup-content {
-            max-width: 500px; /* Smaller width for compact popup */
-            max-height: 400px; /* Smaller height for compact popup */
-            padding: 10px;
-            box-sizing: border-box;
-            background: #fff;
-            border-radius: 8px;
-            margin: 0 auto;
-            position: relative; /* For positioning close button */
-        }
-        .mfp-container video {
-            width: 100%;
-            height: auto;
-            max-height: 350px; /* Restrict video height */
-            object-fit: contain; /* Fit video without cropping */
-            display: block;
-            margin: 0 auto;
-            border-radius: 4px;
-        }
-        /* Close button styling */
-        .video-popup-content .close-btn {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            background: #ff4d4d; /* Red background for visibility */
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 1000;
-            transition: background 0.3s;
-        }
-        .video-popup-content .close-btn:hover {
-            background: #cc0000; /* Darker red on hover */
-        }
-        /* Mobile adjustments */
-        @media (max-width: 576px) {
-            .mfp-container .video-popup-content {
-                max-width: 90vw; /* Slightly larger on small screens */
-                max-height: 300px; /* Smaller height for mobile */
-                padding: 5px;
-            }
-            .mfp-container video {
-                max-height: 250px; /* Smaller video height for mobile */
-            }
-            .video-popup-content .close-btn {
-                top: -5px;
-                right: -5px;
-                width: 25px;
-                height: 25px;
-                line-height: 25px;
-                font-size: 16px;
-            }
-        }
-        /* Thumbnail styling */
-        .video_thumbnail {
-            position: relative;
-            width: 100%;
-            height: 200px; /* Fixed height for consistent thumbnails */
-            overflow: hidden;
-            border-radius: 4px;
-        }
-        .video_thumbnail video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Fill thumbnail area nicely */
-        }
-        .video_thumbnail .video_overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Optional: dark overlay for play button visibility */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -289,81 +205,77 @@
                         <div class="col-lg-10">
                             <div class="video_gallery_grid">
                                 <div class="row">
-                                    <?php
-                                    // Function to generate thumbnail using FFmpeg if it doesn't exist
-                                    function generateThumbnailIfNeeded($video_path, $thumbnail_path, $second = 1, $thumb_size = '640x360') {
-                                        if (!file_exists($thumbnail_path)) {
-                                            $ffmpeg_path = 'ffmpeg'; // Adjust if FFmpeg is in a custom path, e.g., '/usr/bin/ffmpeg'
-                                            $cmd = "{$ffmpeg_path} -i " . escapeshellarg($video_path) . " -ss {$second} -vframes 1 -s {$thumb_size} " . escapeshellarg($thumbnail_path) . " 2>/dev/null";
-                                            $output = shell_exec($cmd);
-                                            if (!file_exists($thumbnail_path)) {
-                                                error_log("Failed to generate thumbnail for: " . $video_path);
-                                                return false; // Fallback will be used
-                                            }
-                                        }
-                                        return true;
-                                    }
-
-                                    $video_dir = 'videos/';
-                                    $thumbnail_dir = 'img/full/';
-                                    $video_files = glob($video_dir . '*.mp4');
-                                    
-                                    // List of default thumbnails for rotation (add your actual default images to img/full/)
-                                    $default_thumbnails = [
-                                        'default1.jpg', 'default2.jpg', 'default3.jpg', 'default4.jpg', 'default5.jpg'
-                                        // Add more: 'default6.jpg', etc., for variety
-                                    ];
-                                    
-                                    $default_index = 0; // For cycling through defaults
-                                    $delay = 0.4;
-                                    foreach ($video_files as $index => $video) {
-                                        $basename = basename($video, '.mp4');
-                                        $thumbnail = $thumbnail_dir . $basename . '.jpg';
-                                        
-                                        // Auto-generate thumbnail if missing (preferred)
-                                        $has_generated = generateThumbnailIfNeeded($video, $thumbnail);
-                                        
-                                        // If no specific thumbnail and no generated one, use unique default
-                                        if (!file_exists($thumbnail)) {
-                                            $unique_default = $thumbnail_dir . $default_thumbnails[$default_index % count($default_thumbnails)];
-                                            $thumbnail = $unique_default;
-                                            $default_index++; // Cycle to next default for uniqueness
-                                        }
-                                        
-                                        $title = ucwords(str_replace('_', ' ', $basename));
-                                        $description = 'Watch our students engage in ' . strtolower($title) . ' at Abivruthi Kindergarten.';
-                                        $popup_id = 'video_' . $index; // Unique ID for inline popup
-                                        echo '
-                                        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="' . $delay . 's">
-                                            <div class="single_video_item">
-                                                <div class="video_thumbnail">
-                                                    <video muted loop autoplay class="thumbnail-video">
-                                                        <source src="' . htmlspecialchars($video) . '" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                    <div class="video_overlay">
-                                                        <a href="#' . $popup_id . '" class="video_popup_btn">
-                                                            <i class="fas fa-play"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="video_info">
-                                                    <h4>' . htmlspecialchars($title) . '</h4>
-                                                    <p>' . htmlspecialchars($description) . '</p>
+                                    <!-- Video Item 1 -->
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                                        <div class="single_video_item">
+                                            <div class="video_thumbnail">
+                                                <img src="img/full/4 (1).jpg" alt="School Activities" class="img-fluid">
+                                                <div class="video_overlay">
+                                                    <a href="https://www.youtube.com/watch?v=oiHulAQmdqI" class="video_popup_btn">
+                                                        <i class="fas fa-play"></i>
+                                                    </a>
                                                 </div>
                                             </div>
+                                            <div class="video_info">
+                                                <h4>School Activities & Events</h4>
+                                                <p>Watch our students participate in various school activities and events</p>
+                                            </div>
                                         </div>
-                                        <div id="' . $popup_id . '" class="mfp-hide video-popup-content">
-                                            <div class="close-btn" onclick="$.magnificPopup.close();">&times;</div>
-                                            <video controls autoplay width="100%" height="auto">
-                                                <source src="' . htmlspecialchars($video) . '" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
+                                    </div>
+                                    
+                                    <!-- Video Item 2 -->
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                                        <div class="single_video_item">
+                                            <div class="video_thumbnail">
+                                                <img src="img/full/1 (2).jpg" alt="Learning Activities" class="img-fluid">
+                                                <div class="video_overlay">
+                                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video_popup_btn">
+                                                        <i class="fas fa-play"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="video_info">
+                                                <h4>Day Care</h4>
+                                                <p>Explore our innovative teaching methods and learning activities</p>
+                                            </div>
                                         </div>
-                                        ';
-                                        $delay += 0.1;
-                                    }
-                                    ?>
+                                    </div>
+                                    
+                                    <!-- Video Item 3 -->
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                                        <div class="single_video_item">
+                                            <div class="video_thumbnail">
+                                                <img src="img/full/3 (2).jpg" alt="Creative Arts" class="img-fluid">
+                                                <div class="video_overlay">
+                                                    <a href="https://www.youtube.com/watch?v=9bZkp7q19f0" class="video_popup_btn">
+                                                        <i class="fas fa-play"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="video_info">
+                                                <h4>Creative Arts & Crafts</h4>
+                                                <p>See our students express their creativity through arts and crafts</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Video Item 4 -->
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                                        <div class="single_video_item">
+                                            <div class="video_thumbnail">
+                                                <img src="img/full/5 (1).jpg" alt="Physical Activities" class="img-fluid">
+                                                <div class="video_overlay">
+                                                    <a href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" class="video_popup_btn">
+                                                        <i class="fas fa-play"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="video_info">
+                                                <h4>Physical Activities & Sports</h4>
+                                                <p>Watch our students engage in physical activities and sports</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,7 +298,7 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
-    <!-- bootstrap js -->
+    <!-- bootstarp js -->
     <script src="js/bootstrap.min.js"></script>
     <!-- nice select -->
     <script src="vendors/niceselect/js/jquery.nice-select.min.js"></script>
@@ -397,60 +309,15 @@
     <script src="vendors/parallax/parallax.js"></script>
     <!-- wow js -->
     <script src="vendors/wow/wow.min.js"></script>
-    <!-- magnific popup js -->
+    <!-- countup js -->
     <script src="vendors/magnify_popup/jquery.magnific-popup.js"></script>
-    <!-- isotope js -->
+    <!-- isotop js -->
+    <!-- isotop js -->
     <script src="vendors/isotop/imagesloaded.pkgd.min.js"></script>
     <script src="vendors/isotop/isotope.pkgd.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
-    <script>
-    $(document).ready(function() {
-        // Autoplay all thumbnail videos (muted) when Videos tab is opened
-        $('#videos-tab').on('shown.bs.tab', function () {
-            $('.thumbnail-video').each(function() {
-                this.play().catch(function(error) {
-                    console.log('Autoplay prevented for thumbnail video:', error);
-                });
-            });
-        });
-
-        $('.video_popup_btn').magnificPopup({
-            type: 'inline',
-            mainClass: 'mfp-fade',
-            removalDelay: 160,
-            preloader: false,
-            fixedContentPos: false,
-            callbacks: {
-                open: function() {
-                    // Pause all thumbnail videos when popup opens
-                    $('.thumbnail-video').each(function() {
-                        this.pause();
-                    });
-                    // Autoplay the popup video with sound
-                    var popupVideo = this.content.find('video')[0];
-                    if (popupVideo && popupVideo.paused) {
-                        popupVideo.play().catch(function(error) {
-                            console.log('Autoplay prevented in popup:', error);
-                        });
-                    }
-                },
-                close: function() {
-                    // Pause the popup video and resume thumbnail videos
-                    var currentVideo = this.content.find('video')[0];
-                    if (currentVideo) {
-                        currentVideo.pause();
-                    }
-                    $('.thumbnail-video').each(function() {
-                        this.play().catch(function(error) {
-                            console.log('Autoplay prevented for thumbnail video on close:', error);
-                        });
-                    });
-                }
-            }
-        });
-    });
-    </script>
 </body>
 
-</html>
+
+</html> 
