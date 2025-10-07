@@ -82,87 +82,138 @@
             border-color: #667eea;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
-        
-        /* Video Thumbnail Styles */
-/* Tab Section Styles */
-.program_list {
-    min-height: 600px; /* Increased minimum height to make the section taller */
-    padding: 40px 0; /* Adjusted padding to complement the increased height */
-}
+         
+        .program_list {
+            min-height: 600px;  
+            padding: 40px 0;  
+        }
 
-.program_list .row {
-    min-height: 500px; /* Ensures the row inside the section has sufficient height */
-}
+        .program_list .row {
+            min-height: 500px; 
+        }
+ 
+        .video_thumbnail {
+            position: relative;
+            width: 100%;
+            height: 300px; 
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer; /* Indicates the thumbnail is clickable */
+        }
 
-/* Video Thumbnail Styles (unchanged from previous adjustment) */
-.video_thumbnail {
-    position: relative;
-    width: 100%;
-    height: 300px; /* Retained from previous change */
-    overflow: hidden;
-    border-radius: 4px;
-}
+        .video_thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.video_thumbnail video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .video_thumbnail .video_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.video_thumbnail .video_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .video_thumbnail:hover .video_overlay {
+            opacity: 1;
+        }
 
-.video_thumbnail:hover .video_overlay {
-    opacity: 1;
-}
+        .video_popup_btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
 
-.video_popup_btn {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
+        .video_popup_btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            color: #333;
+            text-decoration: none;
+        }
 
-.video_popup_btn:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: scale(1.1);
-    color: #333;
-    text-decoration: none;
-}
-
-/* Mobile adjustments */
-@media (max-width: 576px) {
-    .program_list {
-        min-height: 400px; /* Adjusted minimum height for mobile */
-        padding: 20px 0;
-    }
-
-    .program_list .row {
-        min-height: 300px; /* Adjusted row height for mobile */
-    }
-
-    .video_thumbnail {
-        height: 200px; /* Retained from previous change */
-    }
-
+        /* Compact Video Popup Styles (from reference) */
+        .mfp-container .video-popup-content {
+            max-width: 500px;
+            max-height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 8px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .mfp-container video {
+            width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        .video-popup-content .close-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: #ff4d4d;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .video-popup-content .close-btn:hover {
+            background: #cc0000;
+        }
+        /* Mobile adjustments */
+        @media (max-width: 576px) {
+            .program_list {
+                min-height: 400px; 
+                padding: 20px 0;
+            }
+            .program_list .row {
+                min-height: 300px;  
+            }
+            .video_thumbnail {
+                height: 200px; 
+            }
+            .mfp-container .video-popup-content {
+                max-width: 90vw;
+                max-height: 300px;
+                padding: 5px;
+            }
+            .mfp-container video {
+                max-height: 250px;
+            }
+            .video-popup-content .close-btn {
+                top: -5px;
+                right: -5px;
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -657,7 +708,7 @@
                         const videoTitle = item.src.split('/').pop().replace('.mp4', '').replace(/_/g, ' ');
                         const popupId = `video_${filter}_${index}`;
                         inner.innerHTML = `
-                            <div class="video_thumbnail">
+                            <div class="video_thumbnail" data-mfp-src="#${popupId}">
                                 <video muted loop class="thumbnail-video">
                                     <source src="${item.src}" type="video/mp4">
                                     Your browser does not support the video tag.
@@ -670,7 +721,7 @@
                             </div>
                             <div id="${popupId}" class="mfp-hide video-popup-content">
                                 <div class="close-btn" onclick="$.magnificPopup.close();">&times;</div>
-                                <video controls muted autoplay width="100%" height="auto">
+                                <video controls autoplay width="100%" height="auto">
                                     <source src="${item.src}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
@@ -681,6 +732,7 @@
                     console.log('Appended element:', div);
                 });
                 console.log('Total elements in grid container:', gridContainer.children.length);
+
                 // Initialize Magnific Popup for images
                 if (typeof $ !== 'undefined' && $.fn.magnificPopup) {
                     $('.gallery_item').magnificPopup({
@@ -693,9 +745,9 @@
                     console.log('jQuery or Magnific Popup not available for images');
                 }
                 
-                // Initialize Magnific Popup for videos
+                // Initialize Magnific Popup for videos (both thumbnail and play button)
                 if (typeof $ !== 'undefined' && $.fn.magnificPopup) {
-                    $('.video_popup_btn').magnificPopup({
+                    $('.video_thumbnail, .video_popup_btn').magnificPopup({
                         type: 'inline',
                         mainClass: 'mfp-fade',
                         removalDelay: 160,
@@ -707,7 +759,7 @@
                                 $('.thumbnail-video').each(function() {
                                     this.pause();
                                 });
-                                // Autoplay the popup video (muted by default)
+                                // Autoplay the popup video with sound
                                 var popupVideo = this.content.find('video')[0];
                                 if (popupVideo && popupVideo.paused) {
                                     popupVideo.play().catch(function(error) {
@@ -721,13 +773,18 @@
                                 if (currentVideo) {
                                     currentVideo.pause();
                                 }
-                                // Thumbnail videos remain static (no autoplay)
+                                $('.thumbnail-video').each(function() {
+                                    this.play().catch(function(error) {
+                                        console.log('Autoplay prevented for thumbnail video on close:', error);
+                                    });
+                                });
                             }
                         }
                     });
                 } else {
                     console.log('jQuery or Magnific Popup not available for videos');
                 }
+
                 // Initialize Isotope
                 if (typeof $ !== 'undefined' && $.fn.isotope) {
                     $(gridContainer).imagesLoaded(function () {
@@ -744,9 +801,6 @@
                 } else {
                     console.log('jQuery or Isotope not available');
                 }
-                
-                // Note: Thumbnail videos are set to autoplay in HTML but muted by default
-                // Users can click to play the popup video with controls
             }
 
             // Default load for "This Week Highlights" with a small delay
